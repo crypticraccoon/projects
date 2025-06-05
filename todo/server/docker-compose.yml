@@ -1,0 +1,94 @@
+networks:
+  server:
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+services:
+  proxy:
+    image: caddy
+    container_name: proxy
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - $PWD/conf:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - server
+
+  server:
+    container_name: server
+    restart: always
+    build:
+      context: ./todo
+      dockerfile: Dockerfile
+    depends_on: 
+      - proxy
+    environment:
+      - ACCESS_SECRET_KEY=${ACCESS_SECRET_KEY}
+      - REFRESH_SECRET_KEY=${REFRESH_SECRET_KEY}
+      - ACCESS_TOKEN_EXPIRY=${ACCESS_TOKEN_EXPIRY}
+      - REFRESH_TOKEN_EXPIRY=${REFRESH_TOKEN_EXPIRY}
+     
+      - DEBUG=${DEBUG}
+      
+      - PORT=${PORT}
+      - HOST=${HOST}
+      - HOST_V6=${HOST_V6}
+      
+      - SERVER_SHUTDOWN_TIMEOUT=${SERVER_SHUTDOWN_TIMEOUT}
+      - OTEL_SHUTDOWN_TIMEOUT=${OTEL_SHUTDOWN_TIMEOUT}
+      
+      - OTEL_LOGS_ENABLED=${OTEL_LOGS_ENABLED}
+      - OTEL_TRACES_ENABLED=${OTEL_TRACES_ENABLED}
+      
+      - OTEL_RESOURCE_ATTRIBUTES=${OTEL_RESOURCE_ATTRIBUTES}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS= ${OTEL_EXPORTER_OTLP_HEADERS}
+      
+      - OTEL_TRACE_SERVICE_NAME=${OTEL_TRACE_SERVICE_NAME}
+      - OTEL_LOGS_NAME=${OTEL_LOGS_NAME}
+      - DB=${DB}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PWD=${DB_PWD}
+      - SMTP_ENABLED=${SMTP_ENABLED}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_ADMIN_EMAIL=${SMTP_ADMIN_EMAIL}
+      - MAILER_SUBJECTS_CONFIRMATION=${MAILER_SUBJECTS_CONFIRMATION}
+      - SERVER_URL=${SERVER_URL}
+      - REGISTER_VERIFICATION_REDIRECT=${REGISTER_VERIFICATION_REDIRECT}
+      - RECOVERY_VERIFICATION_REDIRECT=${RECOVERY_VERIFICATION_REDIRECT}
+      - ROOT_REDIRECT=${ROOT_REDIRECT}
+    networks:
+      - server
+  
+  ##NOTE: Comment out below if youre bringing your own database
+  #database:
+    #container_name: database
+    #image: postgres:${DB_VERSION}
+    #restart: always
+    #shm_size: 128mb
+    #ports:
+      #- ${DB_PORT}:5432
+    #healthcheck:
+      #test: pg_isready -U postgres -h localhost
+      #interval: 5s
+      #timeout: 5s
+      #retries: 10
+    #volumes:
+        #- ./database/scripts/init/01-init.sql:/docker-entrypoint-initdb.d/00-init.sql:Z
+        #- ./database/data:/var/lib/postgresql/data:Z
+    #environment:
+        #POSTGRES_USER: ${DB_USER}
+        #POSTGRES_PASSWORD: ${DB_PWD}
+        #POSTGRES_DB: ${DB}
+    #networks:
+      #- server

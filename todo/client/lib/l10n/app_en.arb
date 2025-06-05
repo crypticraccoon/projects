@@ -1,0 +1,105 @@
+{
+	 "helloWorld": "Hello World!",
+	 "@helloWorld": {
+			"description": "The conventional newborn programmer greeting"
+	 },
+		 
+
+	 "appTitle": "Todo App",
+
+	 "missingInformationError":"Missing information.",
+	 "mismatchPasswordsError":"Confirm password does not match.",
+
+	 "loginTitle":"Login",
+
+	 "loginButton":"Login",
+	 "forgotPasswordText":"Forgot Password?",
+
+	 "emailLabel":"Email",
+	 "emailHint":"johndoe@example.com",
+	 "passwordPlaceholder":"Password",
+
+	 "passwordLabel":"Password",
+	 "passwordHint":"********",
+
+	 "confirmPasswordLabel":"Confirm Password",
+	 "confirmPasswordHint":"********",
+
+	 "oldPasswordLabel":"Old Password",
+	 "oldPasswordHint":"********",
+
+	 "newPasswordLabel":"New Password",
+	 "newPasswordHint":"********",
+
+
+	 "registerText":"Need an account?",
+	 "registerHereButton":"Register here",
+	 "registerButton":"Register",
+
+	 "recoverPasswordTitle":"Recover Password",
+   "sendRecoveryLinkButton":"Send Recovery Link",
+
+	 "profileSetupTitle":"Profile Setup",
+	 "profileSetupButton":"Finish",
+
+
+	 "usernameLabel":"Username",
+	 "usernameHint":"johndoe",
+
+
+	 "logOutButton":"Log Out",
+
+	 "popUpConfirmationTitle":"Are you sure?",
+	 "popUpConfirm":"Confirm",
+	 "popUpCancel":"Cancel",
+
+	 "popUpRegistrationDesc":"Registration will not be completed if you leave this page.",
+	 "popUpRecoveryPasswordDesc":"Password will not be updated if you leave this page.",
+	 "popUpLogOutConfirmationDesc":"You will be logged out.",
+	 "popUpDeleteTodoDesc":"Deleted item cannot be recovered.",
+	
+	"recoveryUpdateNewPasswordTitle":"Set new password",
+	"recoveryUpdatePasswordButton":"Update",
+
+	"usernameUpdatedText":"Username updated",
+	"emailUpdatedText":"Email updated",
+	"passwordUpdatedText":"Password updated",
+	"updateButton":"Update",
+  "updateEmailTitle":"Update Email",
+  "updateUsernameTitle":"Update Username",
+  "updatePasswordTitle":"Update Password",
+
+	 "createTodoButton":"Create Todo",
+	 "createTodoTitle":"Create Todo",
+	 "createTodoCompleted":"Todo created.",
+   "deleteButton":"Delete",
+	 "editButton":"Edit",
+
+	 "todoDeleteText":"Item deleted.",
+
+	 "updateTodoTitle":"Update Todo",
+	 "updateTodoCompleted":"Todo updated.",
+	 "updateTodoButton":"Update",
+
+	 "passwordRecoverEmailPageHeader":"Forgot Password?",
+	 "passwordRecoverEmailPageDesc":"Please enter your account's email below. We will send you a recovery link to help change your password.",
+	 "sendEmail":"Send Email",
+	 "updatePassword":"Update Password",
+	 "confirmPassword":"Confirm Password",
+	 "mismatchPasswords":"Mismatch Passwords. Please fix.",
+	 "registrationPageHeader":"Register",
+	 "registrationPageDesc":"Please fill out the form below to create an account with us.",
+	 "verifyEmail":"Verify Email",
+	 "registerUserPageHeader":"Register User Information",
+	 "registerUserPageDesc":"Almost there! Just fill out the form below to finalize your accout with us!",
+	 "usernamePlaceholder":"Username",
+	 "forgotPasswordPlaceholder":"Email",
+	 "recoverUpdatePasswordHeader":"Almost there!",
+	 "recoverUpdatePasswordDesc":"Confirm your new password below.",
+
+
+	 "settingsAccountTitle":"Account",
+	 "settingsUpdateUsername":"Change Username"
+
+
+}

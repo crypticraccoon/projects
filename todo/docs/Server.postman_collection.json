@@ -1,0 +1,1212 @@
+{
+	"info": {
+		"_postman_id": "b9c0a185-680d-4840-a6e4-d9d547e9cb4f",
+		"name": "Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45138574",
+		"_collection_link": "https://asd-9099534.postman.co/workspace/8e7e764a-c474-4087-8c7b-da14c5dc0947/collection/45138574-b9c0a185-680d-4840-a6e4-d9d547e9cb4f?action=share&source=collection_link&creator=45138574"
+	},
+	"item": [
+		{
+			"name": "Todo Server Api",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"if (responseJson && responseJson.token_data.access_token) {",
+											"    pm.collectionVariables.set(\"access_token\", responseJson.token_data.access_token);",
+											"    pm.collectionVariables.set(\"refresh_token\", responseJson.token_data.refresh_token);",
+											"} ",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"maahase@hotmail.com\",\n    \"password\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/login",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"\",\n\"password\":\"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/logout",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{% response 'body', 'req_1479d84474f741bebfd512c99dae9eeb', 'b64::JC5zdWNjZXNzLmFjY2Vzc190b2tlbg==::46b', 'never', 60 %}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"refresh_token\": \"{% response 'body', 'req_1479d84474f741bebfd512c99dae9eeb', 'b64::JC5zdWNjZXNzLnJlZnJlc2hfdG9rZW4=::46b', 'never', 60 %}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/refresh",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"item": [
+						{
+							"name": "Send Email Confirmation Link",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"test@test.test\",\n\t\"password\":\"test\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/register",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": []
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"asd@ad.c\",\n\t\"password\":\"asd\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/register/verify/d06d2532-3127-434e-b2f0-c74d9eb02036/927056142649",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"register",
+										"verify",
+										"d06d2532-3127-434e-b2f0-c74d9eb02036",
+										"927056142649"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set User Data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"maahase@hotmail.com\",\n\t\"password\":\"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/register/new/d06d2532-3127-434e-b2f0-c74d9eb02036/927056142649",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"register",
+										"new",
+										"d06d2532-3127-434e-b2f0-c74d9eb02036",
+										"927056142649"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recover",
+					"item": [
+						{
+							"name": "Send Recovery Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"test@test.test\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/recover",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"recover"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"url": {
+									"raw": "{{ _.sample_app_url }}/recover/verify/d06d2532-3127-434e-b2f0-c74d9eb02036/927056142649",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"recover",
+										"verify",
+										"d06d2532-3127-434e-b2f0-c74d9eb02036",
+										"927056142649"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/10.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"password\":\"new_password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ _.sample_app_url }}/recover/update/d06d2532-3127-434e-b2f0-c74d9eb02036/927056142649",
+									"host": [
+										"{{ _.sample_app_url }}"
+									],
+									"path": [
+										"recover",
+										"update",
+										"d06d2532-3127-434e-b2f0-c74d9eb02036",
+										"927056142649"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Authenticated Routes",
+					"item": [
+						{
+							"name": "User",
+							"item": [
+								{
+									"name": "Get User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/user?=",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"user"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Username",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"username\":\"\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/user/update/username",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"user",
+												"update",
+												"username"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"password\":\"asd\",\n\t\"new_password\":\"s\"\n}\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/user/update/password",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"user",
+												"update",
+												"password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"email\":\"asd@s.asc\"\n}\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/user/update/email",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"user",
+												"update",
+												"email"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Todo",
+							"item": [
+								{
+									"name": "Create Todo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\":\"test5\",\n\t\"body\":\"test bvody\",\n\t\"deadline\":\"{{timestamp}}\"\n}\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/create",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"create"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Todo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/{{$randomUUID}}",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"{{$randomUUID}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Todos By Date",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/2025-05-21/10/1",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"2025-05-21",
+												"10",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Complete Todo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/complete/{{$randomUUID}}",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"complete",
+												"{{$randomUUID}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Completed Todos",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/completed/10/1",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"completed",
+												"10",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Todo Stats",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/stats",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"stats"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Todo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": []
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"id\": \"{% response 'body', 'req_d107f90325cc4a098bbb112602231052', 'b64::JC5zdWNjZXNzLmlk::46b', 'never', 60 %}\",\n\t\"user_id\": \"{{ _.sample_app_id }}\",\n\t\"title\":\"updated title\",\n\t\"body\":\"body\",\n\t\"deadline\":\"{% now 'iso-8601', '' %}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/update",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Todo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true,
+										"disableUrlEncoding": false,
+										"disableCookies": false
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "User-Agent",
+												"value": "insomnia/10.3.0"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"id\":\"8cb902e4-193f-4a97-a67a-7c09072d1b85\",\n\t\"password\":\"asd\",\n\t\"new_password\":\"s\"\n}\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{ _.sample_app_url }}/a/todo/delete/{{$randomUUID}}",
+											"host": [
+												"{{ _.sample_app_url }}"
+											],
+											"path": [
+												"a",
+												"todo",
+												"delete",
+												"{{$randomUUID}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"var now = new Date();",
+									"const year = now.getFullYear();",
+									"const month = String(now.getMonth() + 1).padStart(2, '0');",
+									"const day = String(now.getDate()).padStart(2, '0');",
+									"",
+									"const hours = String(now.getHours()).padStart(2, '0');",
+									"const minutes = String(now.getMinutes()).padStart(2, '0');",
+									"const seconds = String(now.getSeconds()).padStart(2, '0');",
+									"const milliseconds = now.getMilliseconds();",
+									"",
+									"const microseconds = String(milliseconds * 1000).padStart(6, '0');",
+									"",
+									"const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${microseconds}`;",
+									"",
+									"pm.environment.set(\"timestamp\", formattedTime);",
+									"console.log(formattedTime)"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Hello",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Well Known",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "sample_app_url",
+			"value": "http://0.0.0.0:3000/v1"
+		},
+		{
+			"key": "sample_app_id",
+			"value": "d2362125-c8c5-4adb-9ba4-cd6753f4fe11"
+		},
+		{
+			"key": "test",
+			"value": ""
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		}
+	]
+}
