@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/data/services/api/api.dart';
 import 'package:todo/data/services/models/login_response/login_response.dart';
 import 'package:todo/data/services/models/todo_stats_response/todo_stats_response.dart';
@@ -52,6 +53,8 @@ class AuthRepository extends ChangeNotifier {
   }) async {
     try {
       final result = await _apiClient.login(email: email, password: password);
+      final sp = await SharedPreferences.getInstance();
+      await sp.clear();
       switch (result) {
         case Ok<LoginResponse>():
           _isAuthenticated = true;
