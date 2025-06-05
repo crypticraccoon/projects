@@ -2,7 +2,7 @@
 
 ## Frontend
 
-![overview](/assets/overview/overview.gif)
+![overview](./assets/overview/overview.gif)
 
 ### Introduction
 For project's frontend I chose [flutter](https://flutter.dev/) as the mobile framework and utilized the [MVVN Architecture](https://docs.flutter.dev/app-architecture/guide) to allow the application to be scaled, tested, and maintained. 
@@ -124,7 +124,7 @@ For this project I chose [golang](https://go.dev/) as the backend with the [chi 
 To view and test endpoint, import [Todo server endpoints](https://github.com/crypticraccoon/nimble/blob/main/docs/Server.postman_collection.json) to postman.
 
 #### Overveiw
-![Server endpoints visualization](/assets/images/server_api.jpeg)
+![Server endpoints visualization](./assets/images/server_api.jpeg)
 
 ### Packages
  - Chi 
