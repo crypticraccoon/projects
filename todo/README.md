@@ -2,6 +2,8 @@
 
 ## Frontend
 
+![overview](/assets/overview/overview.gif)
+
 ### Introduction
 For project's frontend I chose [flutter](https://flutter.dev/) as the mobile framework and utilized the [MVVN Architecture](https://docs.flutter.dev/app-architecture/guide) to allow the application to be scaled, tested, and maintained. 
 
