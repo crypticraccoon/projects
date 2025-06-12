@@ -5,12 +5,11 @@
 ![overview](./assets/overview/overview.gif)
 
 ### Introduction
-For project's frontend I chose [flutter](https://flutter.dev/) as the mobile framework and utilized the [MVVN Architecture](https://docs.flutter.dev/app-architecture/guide) to allow the application to be scaled, tested, and maintained. 
+For project's frontend I chose [flutter](https://flutter.dev/) as the mobile framework and utilized the [MVVM Architecture](https://docs.flutter.dev/app-architecture/guide) to allow the application to be scaled, tested, and maintained. 
 
 ### Packages
 - [dio](https://pub.dev/packages/dio) - HTTP client & interceptor
-- [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage) - for token
-- [shared_preferences](https://pub.dev/packages/shared_preferences) - user data storage
+- [shared_preferences](https://pub.dev/packages/shared_preferences) - data storage
 - [go_router](https://pub.dev/packages/go_router) - app routing and deep linking
 - [provider](https://pub.dev/packages/provider) - state management
 - [json_annotations](https://pub.dev/packages/json_annotation) - generating models
