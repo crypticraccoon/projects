@@ -59,13 +59,13 @@ The website will be available at `http://localhost:3000`
 
 ## Images
 
-![index](/images/index_empty.png)
+![index](./images/index_empty.png)
 
-![index](/images/index.png)
+![index](./images/index.png)
 
-![index](/images/person_expanded.png)
+![index](./images/person_expanded.png)
 
 
-![index](/images/extract_side_bar.png)
+![index](./images/extract_side_bar.png)
 
-![index](/images/video_list.png)
+![index](./images/video_list.png)
