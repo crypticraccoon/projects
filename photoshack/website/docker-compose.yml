@@ -1,0 +1,44 @@
+services:
+  reverse_proxy:
+    container_name: ps_reverse_proxy
+    image: nginx
+    volumes:
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+     - 3000:3000
+     - 8080:8080
+    networks: 
+      - ps_client
+      - ps_server
+
+  server:
+    build: 
+      context: ./server
+    container_name: ps_server
+    privileged: true
+    networks: 
+      - ps_server
+
+    volumes:
+      - ../data:/data
+      - ../data/magick/magick:/bin/magick
+      - ../data/test_input/photos:/volumes/photos
+      - ../data/test_input/videos:/volumes/videos
+
+  client: 
+    build:
+      context: ./client
+    container_name: ps_client
+    networks: 
+      - ps_client
+    depends_on:
+      - server
+    #environment:
+      ##replace with 
+      #NEXT_JS_PUBLIC_URL: "192.168.1.174:3001"
+      ##TODO: set static router ip?
+      #
+
+networks:
+  ps_client:
+  ps_server:
