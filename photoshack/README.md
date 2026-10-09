@@ -44,18 +44,6 @@ docker-compose up -d
 
 The website will be available at `http://localhost:3000` 
 
-## Project Structure
-
-```
-.
-├── frontend/        # Next.js frontend
-├── backend/         # Golang (Chi) API/server
-│   └── scripts/     # Bash scripts for extraction, conversion, manipulation
-├── nginx/           # Nginx reverse proxy config
-├── docker-compose.yml
-└── Dockerfile
-```
-
 
 ## Images
 
